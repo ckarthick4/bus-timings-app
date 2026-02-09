@@ -1,0 +1,16 @@
+[
+  {
+    "busNo": "TN30-12",
+    "from": "Tholasampatty",
+    "to": "Salem",
+    "via": "Tharamangalam",
+    "time": "07:30 AM"
+  },
+  {
+    "busNo": "TN30-45",
+    "from": "Tholasampatty",
+    "to": "Salem",
+    "via": "Omalur",
+    "time": "09:15 AM"
+  }
+]

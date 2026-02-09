@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find bus timings and routes for village buses">
+  <title>🚌 Village Bus Timings</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🚌 Village Bus Timings</h1>
+      <p class="subtitle">Find your bus route and schedule</p>
+    </header>
+
+    <main>
+      <form id="searchForm" class="search-form" onsubmit="handleSearch(event)">
+        <div class="field">
+          <label for="from">From</label>
+          <input 
+            id="from" 
+            type="text" 
+            placeholder="Enter departure location"
+            autocomplete="off"
+            aria-label="Departure location"
+            aria-describedby="from-suggestions"
+          >
+          <div id="from-suggestions" class="suggestions" role="listbox" aria-label="Departure suggestions"></div>
+        </div>
+
+        <div class="field">
+          <label for="to">To / Via</label>
+          <input 
+            id="to" 
+            type="text" 
+            placeholder="Enter destination or stop"
+            autocomplete="off"
+            aria-label="Destination or stop"
+            aria-describedby="to-suggestions"
+          >
+          <div id="to-suggestions" class="suggestions" role="listbox" aria-label="Destination suggestions"></div>
+        </div>
+
+        <button type="submit" id="searchBtn" class="search-btn">
+          <span class="btn-text">Search Buses</span>
+          <span class="btn-loader" style="display: none;">⏳</span>
+        </button>
+      </form>
+
+      <div id="error" class="error-message" role="alert" style="display: none;"></div>
+
+      <div id="result" class="results" role="region" aria-label="Search results"></div>
+    </main>
+
+    <footer>
+      <p>Made with ❤️ for village travelers</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
