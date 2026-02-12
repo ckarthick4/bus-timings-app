@@ -59,15 +59,17 @@ app.get("/api/search", (req, res) => {
       .filter(bus => {
         if (!isValidBus(bus)) return false;
 
+        const fromValue = sanitizeInput(bus.from);
+        const viaValue = sanitizeInput(bus.via);
+        const toValue = sanitizeInput(bus.to);
+
+        // 'from' search can match either actual from OR via stop
         const fromMatch = fromQuery
-          ? sanitizeInput(bus.from).includes(fromQuery)
+          ? (fromValue.includes(fromQuery) || viaValue.includes(fromQuery))
           : true;
 
         const toMatch = toQuery
-          ? (
-              sanitizeInput(bus.to).includes(toQuery) ||
-              sanitizeInput(bus.via).includes(toQuery)
-            )
+          ? (toValue.includes(toQuery) || viaValue.includes(toQuery))
           : true;
 
         return fromMatch && toMatch;
