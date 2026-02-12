@@ -109,9 +109,14 @@ app.get("/api/suggest", (req, res) => {
 
     buses.forEach(bus => {
       if (isValidBus(bus)) {
-        if (sanitizeInput(bus.from).includes(q)) places.add(bus.from);
-        if (sanitizeInput(bus.to).includes(q)) places.add(bus.to);
-        if (sanitizeInput(bus.via).includes(q)) places.add(bus.via);
+      const fromVal = sanitizeInput(bus.from);
+      const toVal = sanitizeInput(bus.to);
+      const viaVal = sanitizeInput(bus.via);
+
+      // Only suggest places that START with what the user typed
+      if (fromVal.startsWith(q)) places.add(bus.from);
+      if (toVal.startsWith(q)) places.add(bus.to);
+      if (viaVal.startsWith(q)) places.add(bus.via);
       }
     });
 
