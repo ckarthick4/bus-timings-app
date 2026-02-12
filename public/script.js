@@ -18,6 +18,7 @@ const elements = {
   toSuggestions: document.getElementById("to-suggestions"),
   searchForm: document.getElementById("searchForm"),
   searchBtn: document.getElementById("searchBtn"),
+  swapBtn: document.getElementById("swapBtn"),
   result: document.getElementById("result"),
   error: document.getElementById("error")
 };
@@ -249,6 +250,18 @@ function handleSearch(event) {
   searchBuses(from, to);
 }
 
+function handleSwap() {
+  const currentFrom = elements.from.value;
+  const currentTo = elements.to.value;
+
+  elements.from.value = currentTo;
+  elements.to.value = currentFrom;
+
+  hideError();
+  hideSuggestions(elements.fromSuggestions);
+  hideSuggestions(elements.toSuggestions);
+}
+
 // Keyboard Navigation for Suggestions
 function handleSuggestionKeyboard(e, suggestionsBox, field) {
   const suggestions = suggestionsBox.querySelectorAll("div");
@@ -352,6 +365,11 @@ function initialize() {
 
   // Form submission
   elements.searchForm.addEventListener("submit", handleSearch);
+
+  // Swap button
+  if (elements.swapBtn) {
+    elements.swapBtn.addEventListener("click", handleSwap);
+  }
 }
 
 // 🚀 Initialize app when DOM is ready

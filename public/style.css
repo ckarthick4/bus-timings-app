@@ -71,6 +71,29 @@ main {
   margin-bottom: 2rem;
 }
 
+.swap-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.75rem;
+  margin: -0.5rem 0 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius);
+  cursor: pointer;
+  gap: 0.35rem;
+  transition: var(--transition);
+}
+
+.swap-btn:hover {
+  color: var(--primary-color);
+  border-style: solid;
+  background: var(--bg-secondary);
+}
+
 .field {
   position: relative;
   margin-bottom: 1.5rem;
