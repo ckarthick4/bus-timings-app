@@ -247,6 +247,12 @@ function handleSearch(event) {
     return;
   }
   
+  // Validate that from and to are not the same
+  if (from && to && from.toLowerCase() === to.toLowerCase()) {
+    showError("From and To locations cannot be the same. Please choose different locations.");
+    return;
+  }
+  
   searchBuses(from, to);
 }
 

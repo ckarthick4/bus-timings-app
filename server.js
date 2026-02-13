@@ -55,6 +55,15 @@ app.get("/api/search", (req, res) => {
       return res.json([]);
     }
 
+    // Validate that from and to are not the same
+    if (fromQuery && toQuery && fromQuery === toQuery) {
+      return res.status(400).json({
+        success: false,
+        error: "From and To locations cannot be the same",
+        buses: []
+      });
+    }
+
     const results = buses
       .filter(bus => {
         if (!isValidBus(bus)) return false;
@@ -65,11 +74,11 @@ app.get("/api/search", (req, res) => {
 
         // 'from' search can match either actual from OR via stop
         const fromMatch = fromQuery
-          ? (fromValue.includes(fromQuery) || viaValue.includes(fromQuery))
+          ? (fromValue.startsWith(fromQuery) || viaValue.startsWith(fromQuery))
           : true;
 
         const toMatch = toQuery
-          ? (toValue.includes(toQuery) || viaValue.includes(toQuery))
+          ? (toValue.startsWith(toQuery) || viaValue.startsWith(toQuery))
           : true;
 
         return fromMatch && toMatch;
