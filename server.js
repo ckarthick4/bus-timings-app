@@ -130,7 +130,7 @@ app.get("/api/suggest", (req, res) => {
       if (viaVal.startsWith(q)) places.add(bus.via);
       }
     });
-
+    console.log(places);
     // Sort suggestions alphabetically
     const suggestions = Array.from(places).sort();
     

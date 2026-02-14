@@ -102,6 +102,8 @@ function selectSuggestion(suggestionsBox, value) {
   }
   AppState.selectedSuggestionIndex.from = -1;
   AppState.selectedSuggestionIndex.to = -1;
+  AppState.currentSuggestions.from = [];
+  AppState.currentSuggestions.to = [];
 }
 
 // 🔍 Fetch Suggestions
@@ -329,6 +331,12 @@ function initialize() {
   });
 
   elements.from.addEventListener("keydown", (e) => {
+    if (elements.fromSuggestions.classList.contains("show")) {
+      handleSuggestionKeyboard(e, elements.fromSuggestions, "from");
+    }
+  });
+
+  elements.from.addEventListener("onchange", (e) => {
     if (elements.fromSuggestions.classList.contains("show")) {
       handleSuggestionKeyboard(e, elements.fromSuggestions, "from");
     }
