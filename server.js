@@ -111,7 +111,7 @@ app.get("/api/suggest", (req, res) => {
   try {
     const q = sanitizeInput(req.query.q);
     
-    if (!q || q.length < 1) {
+    if (!q || q.length < 2) {
       return res.json([]);
     }
 

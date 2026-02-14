@@ -107,8 +107,11 @@ function selectSuggestion(suggestionsBox, value) {
 }
 
 // 🔍 Fetch Suggestions
+const MIN_SUGGEST_LETTERS = 2;
+
 async function fetchSuggestions(query, field) {
-  if (!query || query.trim().length < 1) {
+  const trimmed = query ? query.trim() : "";
+  if (trimmed.length < MIN_SUGGEST_LETTERS) {
     if (field === "from") {
       hideSuggestions(elements.fromSuggestions);
     } else {
@@ -118,7 +121,7 @@ async function fetchSuggestions(query, field) {
   }
 
   try {
-    const encodedQuery = encodeURIComponent(query.trim());
+    const encodedQuery = encodeURIComponent(trimmed);
     const response = await fetch(`/api/suggest?q=${encodedQuery}`);
     
     if (!response.ok) {
